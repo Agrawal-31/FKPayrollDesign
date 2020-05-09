@@ -12,6 +12,7 @@ class Payments{
 		EmployeeOperations.addEmployee("Himanshu", "8890609120", Constants.SalType.MONTHLY, 500000);
 		EmployeeOperations.addEmployee("Kislay", "8890609120", Constants.SalType.DAILY, 10000);
 
+
 		EmployeeOperations.deleteEmployee(1);
 
 	}

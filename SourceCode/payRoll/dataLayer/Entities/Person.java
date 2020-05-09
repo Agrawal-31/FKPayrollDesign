@@ -12,6 +12,10 @@ public class Person{
 		this.phNo = phNo;
 	}
 
+	public String getPhNo() {
+		return phNo;
+	}
+
 	public String getName(){
 		return name;
 	}
