@@ -1,10 +1,12 @@
-package payRoll;
+package payRoll.dataLayer.Entities;
 
-class Employee extends Person{
+import payRoll.Constants;
+
+public class Employee extends Person{
 	private Constants.SalType salType;
 	private Integer salary;
 
-	Employee(String name, String phNo, Constants.SalType salType, Integer salary){
+	public Employee(String name, String phNo, Constants.SalType salType, Integer salary){
 		super(name, phNo);
 		this.salType = salType;
 		this.salary = salary;

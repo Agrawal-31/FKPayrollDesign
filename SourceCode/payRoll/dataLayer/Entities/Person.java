@@ -1,6 +1,6 @@
-package payRoll;
+package payRoll.dataLayer.Entities;
 
-class Person{
+public class Person{
 	private static int lastId;
 	private Integer id;
 	private String name;
@@ -14,5 +14,8 @@ class Person{
 
 	public String getName(){
 		return name;
+	}
+	public Integer getId(){
+		return id;
 	}
 }

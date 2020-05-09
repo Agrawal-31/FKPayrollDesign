@@ -1,7 +1,7 @@
 package payRoll;
 
-class Constants{
-	static enum SalType {
+public class Constants{
+	public static enum SalType {
 		DAILY,
 		MONTHLY
 	}
