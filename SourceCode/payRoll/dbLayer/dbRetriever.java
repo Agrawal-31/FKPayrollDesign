@@ -8,6 +8,7 @@ import payRoll.dataLayer.interfaces.DBMSCred;
 
 import java.sql.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class dbRetriever implements DBMSCred {
@@ -37,6 +38,7 @@ public class dbRetriever implements DBMSCred {
             ResultSet resultSet = st.executeQuery(sql);
             while(resultSet.next()){
                 Employee employee = new Employee(
+                        resultSet.getInt(1),
                         resultSet.getString(2),
                         resultSet.getString(3),
                         Constants.SalType.valueOf(resultSet.getString(4)),
@@ -140,6 +142,52 @@ public class dbRetriever implements DBMSCred {
         }
         return false;
     }
+
+
+    public static ArrayList<Integer> payableHoursInRange(Integer empId, LocalDate fromDate, LocalDate toDate){
+        if(con == null)
+            con = getConnection();
+
+        ArrayList<Integer> payableHours = new ArrayList<>();
+        try
+        {
+            String sql = "select hours FROM daily_pay where (date BETWEEN '"+fromDate+"' AND '"+toDate+"') AND id="+empId;
+            Statement st = con.createStatement();
+            ResultSet resultSet = st.executeQuery(sql);
+            while(resultSet.next()){
+                payableHours.add(resultSet.getInt(1));
+            }
+        }
+        catch(Exception ex)
+        {
+            System.out.println(ex);
+        }
+        return payableHours;
+    }
+
+    public static LocalDate lastPaidOn(int empId){
+        if(con == null)
+            con = getConnection();
+
+       LocalDate localDate = Constants.Dates.beginningDate;
+
+        try
+        {
+            String sql = "select date from salary_transactions where date = (SELECT MAX(date) from salary_transactions where id =" + empId + ")";
+            Statement st = con.createStatement();
+            ResultSet resultSet = st.executeQuery(sql);
+            if(resultSet.next()) {
+                localDate = resultSet.getDate(1).toLocalDate();
+            }
+        }
+        catch(Exception ex)
+        {
+            System.out.println(ex);
+
+        }
+        return localDate;
+    }
+
 
 
 }
