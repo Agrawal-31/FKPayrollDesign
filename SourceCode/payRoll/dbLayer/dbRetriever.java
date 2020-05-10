@@ -99,6 +99,30 @@ public class dbRetriever implements DBMSCred {
         return false;
     }
 
+
+    public static boolean updateEmployee(Employee employee){
+        if(con == null)
+            con = getConnection();
+
+        try
+        {
+            String sql = "UPDATE employee_details SET name = '"+employee.getName()+"', phone_number ='"+employee.getPhNo()+"', salary ="+employee.getSalary() +" WHERE id =" + employee.getId();
+            Statement st = con.createStatement();
+            int m = st.executeUpdate(sql);
+            if (m == 1) {
+                System.out.println("Updated successfully : " + sql);
+                return true;
+            }else
+                System.out.println("Updation failed");
+        }
+        catch(Exception ex)
+        {
+            System.out.println(ex);
+            return false;
+        }
+        return false;
+    }
+
     public static boolean addDailyPay(DailyPay day){
         if(con == null)
             con = getConnection();

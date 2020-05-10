@@ -19,6 +19,12 @@ public class EmployeeOperations {
         return employee;
     }
 
+    public static Employee updateEmployee(Integer empId, String name, String phNo, Constants.SalType salType, Integer salary){
+        Employee employee = new Employee(empId, name, phNo, salType, salary);
+        dbRetriever.updateEmployee(employee);
+        return employee;
+    }
+
     public static void deleteEmployee(Integer id){
         dbRetriever.deleteEmployee(id);
         System.out.println("Deleted");
