@@ -10,8 +10,8 @@ public class Employee extends Person{
 		return salType;
 	}
 
-	public Employee(String name, String phNo, Constants.SalType salType, Integer salary){
-		super(name, phNo);
+	public Employee(Integer id, String name, String phNo, Constants.SalType salType, Integer salary){
+		super(id, name, phNo);
 		this.salType = salType;
 		this.salary = salary;
 	}

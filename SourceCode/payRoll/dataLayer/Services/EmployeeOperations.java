@@ -3,19 +3,20 @@ package payRoll.dataLayer.Services;
 import payRoll.Constants;
 import payRoll.dataLayer.Entities.DailyPay;
 import payRoll.dataLayer.Entities.Employee;
+import payRoll.dataLayer.Entities.Person;
 import payRoll.dataLayer.Entities.SaleReceipt;
-import payRoll.dataLayer.interfaces.CRUDOperations;
 import payRoll.dbLayer.dbRetriever;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class EmployeeOperations {
 
-    public static void addEmployee(String name, String phNo, Constants.SalType salType, Integer salary){
-        Employee employee = new Employee(name, phNo, salType, salary);
+    public static Employee addEmployee(String name, String phNo, Constants.SalType salType, Integer salary){
+        Employee employee = new Employee(Person.idGenerator(), name, phNo, salType, salary);
         dbRetriever.addEmployee(employee);
         System.out.println("Added");
+        return employee;
     }
 
     public static void deleteEmployee(Integer id){
@@ -33,6 +34,12 @@ public class EmployeeOperations {
 
     public  static void addSaleReceipt(SaleReceipt saleReceipt){
         dbRetriever.addSaleReceipt(saleReceipt);
+    }
+
+    public static ArrayList<Integer> totalPayableHours(Integer id){
+        LocalDate tillPaidDate = dbRetriever.lastPaidOn(id);
+        ArrayList<Integer> remDays = dbRetriever.payableHoursInRange(id, tillPaidDate, LocalDate.now());
+        return remDays;
     }
 }
 
