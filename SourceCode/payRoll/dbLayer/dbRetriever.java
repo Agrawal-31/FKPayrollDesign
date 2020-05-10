@@ -1,9 +1,9 @@
 package payRoll.dbLayer;
 
 import payRoll.Constants;
-import payRoll.dataLayer.Entities.DailyPay;
-import payRoll.dataLayer.Entities.Employee;
-import payRoll.dataLayer.Entities.SaleReceipt;
+import payRoll.dataLayer.dbEntities.DailyPay;
+import payRoll.dataLayer.dbEntities.Employee;
+import payRoll.dataLayer.dbEntities.SaleReceipt;
 import payRoll.dataLayer.interfaces.DBMSCred;
 
 import java.sql.*;
@@ -188,6 +188,27 @@ public class dbRetriever implements DBMSCred {
         return localDate;
     }
 
+    public static boolean addSalaryTransaction(Integer empId, LocalDate payDate, LocalDate salesComDate){
+        if(con == null)
+            con = getConnection();
+        try
+        {
+            String sql = "insert into salary_transactions values("+empId+",'"+payDate+"','"+salesComDate+"')";
+            Statement st = con.createStatement();
+            int m = st.executeUpdate(sql);
+            if (m == 1) {
+                System.out.println("Salary transaction Added successfully : " + sql);
+                return true;
+            }else
+                System.out.println("Salary transaction addition failed");
+        }
+        catch(Exception ex)
+        {
+            System.out.println(ex);
+            return false;
+        }
+        return false;
+    }
 
 
 }

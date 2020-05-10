@@ -1,4 +1,4 @@
-package payRoll.dataLayer.Entities;
+package payRoll.dataLayer.dbEntities;
 
 import java.time.LocalDate;
 

@@ -1,7 +1,6 @@
-package payRoll.dataLayer.Entities;
+package payRoll.dataLayer.dbEntities;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class DailyPay extends IndividualEntity{
 

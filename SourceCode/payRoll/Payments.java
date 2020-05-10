@@ -1,8 +1,8 @@
 package payRoll;
 
-import payRoll.dataLayer.Entities.DailyPay;
-import payRoll.dataLayer.Entities.Employee;
-import payRoll.dataLayer.Entities.SaleReceipt;
+import payRoll.dataLayer.dbEntities.DailyPay;
+import payRoll.dataLayer.dbEntities.Employee;
+import payRoll.dataLayer.dbEntities.SaleReceipt;
 import payRoll.dataLayer.Services.EmployeeOperations;
 import payRoll.dataLayer.Services.PayrollCalculator;
 
@@ -14,7 +14,7 @@ class Payments{
 	public static void main(String args[]){
 
 		Employee employee1 = EmployeeOperations.addEmployee("Shishir", "8890609120", Constants.SalType.MONTHLY, 500000);
-		Employee employee2 = EmployeeOperations.addEmployee("Himanshu", "8890609120", Constants.SalType.MONTHLY, 500000);
+		Employee employee2 = EmployeeOperations.addEmployee("Himanshu", "8890609120", Constants.SalType.DAILY, 500000);
 		Employee employee3 = EmployeeOperations.addEmployee("Kislay", "8890609120", Constants.SalType.DAILY, 10000);
 
 		EmployeeOperations.deleteEmployee(employee3.getId());
@@ -22,15 +22,11 @@ class Payments{
 		ArrayList<Employee> employees = EmployeeOperations.getEmployees();
 		System.out.println(employees.size());
 
-		LocalDate today = LocalDate.of(2020, 5, 10);
-		EmployeeOperations.addDailyPay(new DailyPay(employee1.getId(),today ,10));
+		EmployeeOperations.addDailyPay(new DailyPay(employee1.getId(),LocalDate.now() ,10));
 
 		System.out.println(employee1.getId());
-		SaleReceipt saleReceipt = new SaleReceipt(employee1.getId(), today, 500);
+		SaleReceipt saleReceipt = new SaleReceipt(employee1.getId(), LocalDate.now(), 500);
 		EmployeeOperations.addSaleReceipt(saleReceipt);
-
-		ArrayList<Integer> payableDays = EmployeeOperations.totalPayableHours(1);
-		System.out.println(payableDays.size());
 
 		Map<Employee, Integer> salaries =  PayrollCalculator.tillDateSalary(LocalDate.now());
 
