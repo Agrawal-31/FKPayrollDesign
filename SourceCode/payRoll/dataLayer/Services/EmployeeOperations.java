@@ -1,11 +1,13 @@
 package payRoll.dataLayer.Services;
 
 import payRoll.Constants;
+import payRoll.dataLayer.Entities.DailyPay;
 import payRoll.dataLayer.Entities.Employee;
 import payRoll.dataLayer.interfaces.CRUDOperations;
 import payRoll.dbLayer.dbRetriever;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class EmployeeOperations {
 
@@ -20,6 +22,13 @@ public class EmployeeOperations {
         System.out.println("Deleted");
     }
 
+    public static ArrayList<Employee> getEmployees(){
+        return dbRetriever.getEmployees();
+    }
+
+    public  static void addDailyPay(DailyPay day){
+        dbRetriever.addDailyPay(day);
+    }
 }
 
 
