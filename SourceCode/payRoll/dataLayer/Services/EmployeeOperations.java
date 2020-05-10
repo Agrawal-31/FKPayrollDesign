@@ -3,6 +3,7 @@ package payRoll.dataLayer.Services;
 import payRoll.Constants;
 import payRoll.dataLayer.Entities.DailyPay;
 import payRoll.dataLayer.Entities.Employee;
+import payRoll.dataLayer.Entities.SaleReceipt;
 import payRoll.dataLayer.interfaces.CRUDOperations;
 import payRoll.dbLayer.dbRetriever;
 
@@ -26,8 +27,12 @@ public class EmployeeOperations {
         return dbRetriever.getEmployees();
     }
 
-    public  static void addDailyPay(DailyPay day){
-        dbRetriever.addDailyPay(day);
+    public  static void addDailyPay(DailyPay dayPay){
+        dbRetriever.addDailyPay(dayPay);
+    }
+
+    public  static void addSaleReceipt(SaleReceipt saleReceipt){
+        dbRetriever.addSaleReceipt(saleReceipt);
     }
 }
 
