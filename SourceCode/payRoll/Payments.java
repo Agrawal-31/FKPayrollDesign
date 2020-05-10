@@ -19,18 +19,14 @@ class Payments{
 
 		EmployeeOperations.deleteEmployee(employee3.getId());
 
-		ArrayList<Employee> employees = EmployeeOperations.getEmployees();
-		System.out.println(employees.size());
-
 		EmployeeOperations.addDailyPay(new DailyPay(employee1.getId(),LocalDate.now() ,10));
 
-		System.out.println(employee1.getId());
+		EmployeeOperations.updateEmployee(employee1.getId(), employee1.getName(), employee1.getPhNo(), employee1.getSalType(), 40000);
+
 		SaleReceipt saleReceipt = new SaleReceipt(employee1.getId(), LocalDate.now(), 500);
 		EmployeeOperations.addSaleReceipt(saleReceipt);
 
-		Map<Employee, Integer> salaries =  PayrollCalculator.tillDateSalary(LocalDate.now());
-
-		salaries.forEach((key, value) -> System.out.println(key.getName() + " : " + value));
+		PayrollCalculator.paySalaries();
 	}
 
 }

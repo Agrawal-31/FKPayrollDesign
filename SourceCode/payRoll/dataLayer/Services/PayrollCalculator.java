@@ -48,4 +48,11 @@ public class PayrollCalculator {
         Integer salaryDue = intervalPeriod.getMonths();
         return employee.getSalary()*salaryDue;
     }
+
+    public static boolean paySalaries(){
+        Map<Employee, Integer> salaries =  tillDateSalary(LocalDate.now());
+        salaries.forEach((key, value) -> dbRetriever.addSalaryTransaction(key.getId(), LocalDate.now(), LocalDate.now()));
+        salaries.forEach((key, value) -> System.out.println(key.getName() + " : " + value));
+        return true;
+    }
 }
