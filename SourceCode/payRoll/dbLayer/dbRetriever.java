@@ -3,6 +3,7 @@ package payRoll.dbLayer;
 import payRoll.Constants;
 import payRoll.dataLayer.Entities.DailyPay;
 import payRoll.dataLayer.Entities.Employee;
+import payRoll.dataLayer.Entities.SaleReceipt;
 import payRoll.dataLayer.interfaces.DBMSCred;
 
 import java.sql.*;
@@ -109,6 +110,28 @@ public class dbRetriever implements DBMSCred {
                 return true;
             }else
                 System.out.println("Day details addition failed");
+        }
+        catch(Exception ex)
+        {
+            System.out.println(ex);
+            return false;
+        }
+        return false;
+    }
+
+    public static boolean addSaleReceipt(SaleReceipt saleReceipt){
+        if(con == null)
+            con = getConnection();
+        try
+        {
+            String sql = "insert into sales_receipt values("+saleReceipt.getId()+",'"+saleReceipt.getDate()+"',"+saleReceipt.getAmount()+")";
+            Statement st = con.createStatement();
+            int m = st.executeUpdate(sql);
+            if (m == 1) {
+                System.out.println("Sale Receipt Added successfully : " + sql);
+                return true;
+            }else
+                System.out.println("Sale Receipt addition failed");
         }
         catch(Exception ex)
         {
