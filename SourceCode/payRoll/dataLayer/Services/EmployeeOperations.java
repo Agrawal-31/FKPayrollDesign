@@ -1,10 +1,10 @@
 package payRoll.dataLayer.Services;
 
 import payRoll.Constants;
-import payRoll.dataLayer.Entities.DailyPay;
-import payRoll.dataLayer.Entities.Employee;
-import payRoll.dataLayer.Entities.Person;
-import payRoll.dataLayer.Entities.SaleReceipt;
+import payRoll.dataLayer.dbEntities.DailyPay;
+import payRoll.dataLayer.dbEntities.Employee;
+import payRoll.dataLayer.dbEntities.Person;
+import payRoll.dataLayer.dbEntities.SaleReceipt;
 import payRoll.dbLayer.dbRetriever;
 
 import java.time.LocalDate;
@@ -15,7 +15,7 @@ public class EmployeeOperations {
     public static Employee addEmployee(String name, String phNo, Constants.SalType salType, Integer salary){
         Employee employee = new Employee(Person.idGenerator(), name, phNo, salType, salary);
         dbRetriever.addEmployee(employee);
-        System.out.println("Added");
+        dbRetriever.addSalaryTransaction(employee.getId(), LocalDate.now(), LocalDate.now());
         return employee;
     }
 

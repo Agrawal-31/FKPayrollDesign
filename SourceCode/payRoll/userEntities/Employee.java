@@ -1,8 +1,8 @@
-package payRoll.dataLayer.dbEntities;
+package payRoll.userEntities;
 
 import payRoll.Constants;
 
-public class Employee extends Person{
+public class Employee extends Person {
 	private Constants.SalType salType;
 	private Integer salary;
 

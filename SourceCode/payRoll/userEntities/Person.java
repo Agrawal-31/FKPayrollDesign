@@ -1,4 +1,4 @@
-package payRoll.dataLayer.dbEntities;
+package payRoll.userEntities;
 
 import java.util.Random;
 
@@ -25,8 +25,4 @@ public class Person{
 		return id;
 	}
 
-	public static Integer idGenerator(){
-		Random random = new Random();
-		return random.nextInt(900) + 100;
-	}
 }
