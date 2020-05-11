@@ -14,7 +14,7 @@ class Payments{
 	public static void main(String args[]){
 
 		Employee employee1 = EmployeeOperations.addEmployee("Shishir", "8890609120", Constants.SalType.MONTHLY, 500000);
-		Employee employee2 = EmployeeOperations.addEmployee("Himanshu", "8890609120", Constants.SalType.DAILY, 500000);
+		//Employee employee2 = EmployeeOperations.addEmployee("Himanshu", "8890609120", Constants.SalType.DAILY, 500000);
 		Employee employee3 = EmployeeOperations.addEmployee("Kislay", "8890609120", Constants.SalType.DAILY, 10000);
 
 		EmployeeOperations.deleteEmployee(employee3.getId());
